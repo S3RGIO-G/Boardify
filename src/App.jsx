@@ -1,6 +1,6 @@
 import { Route, Navigate } from "react-router-dom";
 import { Home } from "./pages/Home";
-import { Login } from "./pages/login";
+import { Login } from "./pages/Login";
 import { LoginGuard } from "./guards/LoginGuard";
 import { Register } from "./pages/Register";
 import { ContainerLogin } from "./components/ContainerLogin";
