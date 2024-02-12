@@ -1,0 +1,43 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: system-ui;
+}
+
+input::-ms-reveal{
+  display: none;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.color-primary {
+  color: #955acd;
+}
+
+.bg-primary {
+  background-color: #955acd;
+}
+
+.outline-primary {
+  outline-color: #955acd;
+}
+
+.btn-primary {
+  background-color: #8635d2;
+  outline-color: #f1f4f7;
+}
+
+.btn-primary:hover {
+  background-color: #732db3;
+}
+
+.btn-slate {
+  background-color: #e2e8f0;
+}
+
+.btn-slate:hover {
+  background-color: #cbd5e1;
+}
