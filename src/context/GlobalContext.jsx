@@ -11,7 +11,7 @@ export function GlobalContextProvider({ children }) {
 
   const loadLanguage = async () => {
     const language = JSON.parse(localStorage.getItem("language"));
-    const data = await fetch(`/src/languages/${language || "en"}.json`);
+    const data = await fetch(`/languages/${language || "en"}.json`);
     const texts = await data.json();
     setLanguage(texts);
   };
