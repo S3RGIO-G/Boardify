@@ -8,7 +8,7 @@ import { Spinner } from "../components/Spinner";
 export function MyBoards() {
   const { user } = useUser();
   const { boards, createBoard, updateBoard } = useBoards({ idUser: user?.id });
-  const [favourites, setFavourites] = useState([]);
+  const [favourites, setFavourites] = useState(null);
   const { texts: TEXT } = useLanguage();
 
   useEffect(() => {
@@ -35,9 +35,9 @@ export function MyBoards() {
           </h2>
 
           <ul className="flex flex-wrap min-h-[144px] justify-start gap-x-2 gap-y-6 p-4 bg-slate-100 rounded-md">
-            {boards.length ? (
+            {favourites ? (
               <>
-                {favourites.map((b) => (
+                {favourites?.map((b) => (
                   <CardBoard
                     board={b}
                     type="card"
@@ -64,7 +64,7 @@ export function MyBoards() {
           </h2>
 
           <ul className="flex flex-wrap min-h-[144px] justify-start gap-x-2 gap-y-6 p-4 bg-slate-100 rounded-md">
-            {boards.map((b) => (
+            {boards?.map((b) => (
               <CardBoard
                 board={b}
                 type="card"

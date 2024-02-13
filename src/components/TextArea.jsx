@@ -18,15 +18,6 @@ export function TextArea({
     target.setAttribute("style", `height:${target.scrollHeight}px`);
   };
 
-  // const onKeyDown = (e) => {
-  //   console.log(e);
-    // if (e.key === "Enter" && submitEnter) {
-    //   e.preventDefault();
-    //   const newEvent = new Event("submit", { bubbles: true, cancelable: true });
-    //   e.target.form.dispatchEvent(newEvent);
-    // }
-  // };
-
   const onInput = (e) => {
     const { value } = e.target;
     const array = value.split("");
@@ -54,7 +45,6 @@ export function TextArea({
       autoFocus
       defaultValue={defaultValue}
       onChange={onChange}
-      // onKeyDown={onKeyDown}
       onFocus={onFocus}
       className={"resize-none " + className}
       placeholder={placeholder}

@@ -6,7 +6,7 @@ export function ContainerNoLogin() {
   useUser({ initLoading: false });
 
   return (
-    <div className="w-full relative h-screen flex flex-col items-center justify-center p-4 bg-[url('/background.jpg')] bg-cover bg-center">
+    <div className="w-full relative h-dvh flex flex-col items-center justify-center p-4 bg-[url('/background.jpg')] bg-cover bg-center">
       <div className="absolute top-6  z-10 flex items-center w-full max-w-[1000px] justify-between px-10">
         <Link to={"/"}>
           <img src="logo.png" alt="logo" className="w-10" />

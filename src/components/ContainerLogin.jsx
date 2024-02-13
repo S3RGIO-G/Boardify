@@ -20,7 +20,7 @@ export function ContainerLogin() {
   return (
     <OwnerContextProvider>
       <div
-        className={`flex flex-col h-screen ${
+        className={`flex flex-col h-dvh ${
           idBoard ? "bg-[#955acd]" : "bg-white"
         }`}
       >

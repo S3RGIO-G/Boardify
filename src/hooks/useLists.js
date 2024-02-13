@@ -9,7 +9,7 @@ export function useLists({ idBoard = null } = {}) {
 
   useEffect(() => {
     if (!idBoard) return;
-    setLists([]);
+    
     loadLists(idBoard);
   }, [idBoard]);
 

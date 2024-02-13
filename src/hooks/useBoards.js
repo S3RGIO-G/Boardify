@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useLists } from "./useLists";
 
 export function useBoards({ idUser = null, idBoard = null } = {}) {
-  const [boards, setBoards] = useState([]);
+  const [boards, setBoards] = useState(null);
   const [board, setBoard] = useState(null);
   const { lists, deleteList } = useLists();
   const nav = useNavigate();
