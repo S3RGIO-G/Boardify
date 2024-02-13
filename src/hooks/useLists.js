@@ -8,9 +8,7 @@ export function useLists({ idBoard = null } = {}) {
   const { clearTaskList } = useTasks();
 
   useEffect(() => {
-    if (!idBoard) return;
-    
-    loadLists(idBoard);
+    if (idBoard) loadLists(idBoard);
   }, [idBoard]);
 
   const loadLists = async (idBoard) => {

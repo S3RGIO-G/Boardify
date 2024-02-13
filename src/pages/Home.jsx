@@ -13,11 +13,11 @@ export function Home() {
 
   return (
     <>
-      <h1 className="text-5xl sm:text-6xl font-bold text-white w-fit flex">
+      <h1 className="text-5xl sm:text-6xl leading-[60px] font-bold text-white w-fit flex items-center">
         <img
           src="/logo.png"
           alt="logo"
-          className="h-[60px] select-none mr-0.5"
+          className="h-[50px] sm:h-[60px] select-none mr-0.5"
         />
         <span>oard</span>
         <span className="text-purple-500 border-none">ify</span>
