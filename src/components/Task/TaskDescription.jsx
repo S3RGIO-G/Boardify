@@ -42,7 +42,7 @@ export function TaskDescription({ task, updateTaskState }) {
           task?.hasDescription &&
           task?.description?.split("\n").map((t, i) => (
             <p key={i} className="px-0 first:pt-2 last:pb-2">
-              {t}
+              {t ? t : "‌"}
             </p>
           ))}
 
