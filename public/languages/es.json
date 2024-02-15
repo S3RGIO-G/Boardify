@@ -98,6 +98,10 @@
     "start": "Comenzar",
     "signIn": "Iniciar sesión"
   },
+  "notFound": {
+    "title": "¡Pagina no encontrada!",
+    "back": "Volver al inicio"
+  },
   "modals": {
     "deleteBoard": "¿Borrar tablero?",
     "deleteList": "¿Borrar lista?",

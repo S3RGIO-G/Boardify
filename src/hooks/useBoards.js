@@ -56,16 +56,17 @@ export function useBoards({ idUser = null, idBoard = null } = {}) {
 
   const updateBoard = async (id, data) => {
     const prevBoard = board ? { ...board } : null;
-    const prevState = [...boards];
+    const prevState = boards ? [...boards] : null;
     try {
       data.updated = Date.now();
 
       if (board) setBoard(prev => ({ ...prev, ...data }));
-
-      const iBoard = boards.findIndex(b => b.id === id);
-      if (iBoard !== -1) {
-        boards[iBoard] = { ...boards[iBoard], ...data };
-        setBoards([...boards]);
+      if (boards) {
+        const iBoard = boards.findIndex(b => b.id === id);
+        if (iBoard !== -1) {
+          boards[iBoard] = { ...boards[iBoard], ...data };
+          setBoards([...boards]);
+        }
       }
       await updateBoardById(id, { ...data });
     }

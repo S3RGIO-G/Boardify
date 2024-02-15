@@ -98,6 +98,10 @@
     "start": "Get started",
     "signIn": "Sign In"
   },
+  "notFound": {
+    "title": "Page not found!",
+    "back": "Back to home"
+  },
   "modals": {
     "deleteBoard": "Delete board?",
     "deleteList": "Delete list?",

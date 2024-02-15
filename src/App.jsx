@@ -9,20 +9,22 @@ import { MyBoards } from "./pages/MyBoards";
 import { Task } from "./pages/Task";
 import { ContainerNoLogin } from "./components/ContainerNoLogin";
 import { checkUser } from "./services/users.service";
+import NotFound from "./components/NotFound";
 
 export default function App() {
   return (
     <>
       <Route path="/home" element={<Navigate to={"/"} replace />} />
 
-      <Route path="/" element={<ContainerNoLogin />}>
-        <Route index element={<Home />} />
+      <Route element={<ContainerNoLogin />}>
+        <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/*" element={<NotFound />} />
       </Route>
 
       <Route loader={checkUser} element={<LoginGuard />}>
-        <Route path="/*" element={<ContainerLogin />}>
+        <Route element={<ContainerLogin />}>
           <Route path="boards" element={<MyBoards />} />
           <Route path="boards/:idBoard" element={<Board />}>
             <Route path="card" element={<Navigate to={"../"} replace />} />
