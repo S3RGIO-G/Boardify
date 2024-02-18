@@ -47,7 +47,7 @@ export async function register({ email, password, userName }) {
 
 export async function getUsersByField(field, value) {
   try {
-    const res = await axios.get(`${BASE_URL_API}/users/search?${field}=${value}`);
+    const res = await axios.get(`${BASE_URL_API}/users?${field}=${value}`);
     return res.data;
   }
   catch (err) {
