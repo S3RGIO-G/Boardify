@@ -4,6 +4,7 @@ import { useBoards } from "../hooks/useBoards";
 import { useEffect, useState } from "react";
 import { useLanguage } from "../hooks/useLanguage";
 import { Spinner } from "../components/Spinner";
+import { Helmet } from "react-helmet";
 
 export function MyBoards() {
   const { user } = useUser();
@@ -21,12 +22,9 @@ export function MyBoards() {
     }
   }, [boards]);
 
-  useEffect(() => {
-    document.title = "My boards";
-  }, []);
-
   return (
     <main className="py-10 px-4 h-full w-full overflow-y-auto">
+      <Helmet title={TEXT.titles?.myBoards} />
       <div className="w-full m-auto sm:w-[90%] max-w-[900px]">
         <div className="w-full mb-10">
           <h2 className="font-bold text-base mb-2 text-slate-500">

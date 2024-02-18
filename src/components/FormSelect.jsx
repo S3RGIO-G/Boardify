@@ -1,11 +1,21 @@
 import { useEffect, useRef, useState } from "react";
 
-export function FormSelect({ label, className, name, options, onChange }) {
+export function FormSelect({
+  label,
+  className,
+  name,
+  options,
+  onChange,
+  actual,
+  actualText = "(current)",
+  defaultValue = 0
+}) {
   const ref = useRef(null);
-  const [indexSelected, setIndexSelected] = useState(0);
+  const [indexSelected, setIndexSelected] = useState(defaultValue);
 
   useEffect(() => {
-    if(indexSelected > options.length - 1) setIndexSelected(options.length - 1);
+    if (indexSelected > options.length - 1)
+      setIndexSelected(options.length - 1);
   }, [options]);
 
   return (
@@ -18,7 +28,8 @@ export function FormSelect({ label, className, name, options, onChange }) {
         {label}
       </label>
       <p className="text-sm font-semibold text-ellipsis overflow-hidden pointer-events-none">
-        {options[indexSelected]?.name || options[indexSelected]}
+        {options[indexSelected]?.name || options[indexSelected]}{" "}
+        {actual === parseInt(indexSelected) && actualText}
       </p>
 
       <select
@@ -34,7 +45,7 @@ export function FormSelect({ label, className, name, options, onChange }) {
       >
         {options.map((o, i) => (
           <option key={i} value={i}>
-            {o.name || o}
+            {o.name || o} {actual === i && actualText}
           </option>
         ))}
       </select>

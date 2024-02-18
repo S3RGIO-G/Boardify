@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useUser } from "../hooks/useUser.js";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
@@ -10,6 +10,7 @@ import {
 } from "../validators/FormValidators.js";
 import { ErrorAlert } from "../components/ErrorAlert.jsx";
 import { Spinner } from "../components/Spinner.jsx";
+import { Helmet } from "react-helmet";
 
 export function Login() {
   const [errorMessage, setErrorMessage] = useState("");
@@ -21,10 +22,6 @@ export function Login() {
     handleSubmit,
     formState: { errors },
   } = useForm();
-
-  useEffect(() => {
-    document.title = "Sign In";
-  }, []);
 
   const onSubmit = async (e) => {
     setErrorMessage(null);
@@ -40,6 +37,7 @@ export function Login() {
 
   return (
     <>
+      <Helmet title={TEXT.titles?.login}/>
       <div className="w-full max-w-[475px] bg-white p-6 rounded-3xl shadow-2xl shadow-black/50">
         <h2 className="text-2xl sm:text-3xl text-center font-bold">
           {TEXT.login?.title}

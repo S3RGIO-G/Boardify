@@ -139,6 +139,9 @@ export function ListOptions({ show, changeShow, list, onEdit, styles }) {
           <FormSelect
             label={TEXT?.task?.actions.selects.pos}
             options={lists?.map((l, i) => i + 1)}
+            actual={lists.findIndex((l) => l.id === list.id)}
+            actualText={TEXT.form?.selects.current}
+            defaultValue={lists.findIndex((l) => l.id === list.id)}
             name="selectPos"
             className="w-full"
           />

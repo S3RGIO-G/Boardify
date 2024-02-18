@@ -11,7 +11,7 @@ export function TaskActions({ task, updateTaskState }) {
   const { tasks, switchTasks, deleteTask } = useTasks();
   const [moving, setMoving] = useState(false);
   const [positions, setPositions] = useState([]);
-  const [listSelected, setListSelected] = useState(lists[0]);
+  const [indexes, setIndexes] = useState({});
   const navigate = useNavigate();
   const { texts: TEXT } = useLanguage();
   const { hideModal, setModalAttributes } = useModalConfirm();
@@ -22,13 +22,12 @@ export function TaskActions({ task, updateTaskState }) {
     const fromIndex = tasks[task.idList].findIndex((t) => t.id === task.id);
     const toIndex = parseInt(e.target["selectPos"].value);
     const fromList = task.idList;
-    const toList = listSelected.id;
+    const toList = lists[parseInt(e.target["selectLists"].value)].id;
     setMoving(false);
 
     if (fromList === toList && fromIndex === toIndex) return;
     const res = await switchTasks({ fromList, toList, fromIndex, toIndex });
-    setListSelected(lists[0]);
-    updateTaskState(res);
+    if (res) updateTaskState(res);
   };
 
   const onDelete = async () => {
@@ -43,22 +42,35 @@ export function TaskActions({ task, updateTaskState }) {
   const clickOut = (e) => {
     const { current } = formRef;
     const { target } = e;
-    if (current && !current.contains(target)) setMoving(false);
+    if (current && !current.contains(target)) {
+      setMoving(false);
+    }
+  };
+
+  const updatePos = (e = { target: { value: "0" } }) => {
+    const i = parseInt(e.target.value);
+    const list = lists[i];
+    const pos = tasks[list.id]?.map((t, i) => i + 1) || [];
+
+    if (list.id !== task?.idList) pos.push(pos.length + 1);
+
+    if (tasks[task.idList] && task.idList === list.id) {
+      const iTask = tasks[task.idList].findIndex((t) => t.id === task.id);
+      setIndexes((prev) => ({ ...prev, iTask }));
+    } else setIndexes((prev) => ({ ...prev, iTask: null }));
+
+    setPositions(pos);
   };
 
   useEffect(() => {
-    const pos = [];
-    tasks[listSelected.id]?.map((t, i) => pos.push(i + 1));
-
-    if (!tasks[listSelected.id] || listSelected.id !== task?.idList)
-      pos.push(pos.length + 1);
-
-    setPositions(pos);
-  }, [listSelected]);
+    addEventListener("click", clickOut);
+    return () => removeEventListener("click", clickOut);
+  }, []);
 
   useEffect(() => {
-    addEventListener("click", clickOut);
-  }, []);
+    const iList = lists.findIndex((l) => l.id === task.idList);
+    setIndexes((prev) => ({ ...prev, iList }));
+  }, [task]);
 
   return (
     <aside className="mt-2 w-full sm:w-fit ps-10 sm:ps-2">
@@ -68,6 +80,7 @@ export function TaskActions({ task, updateTaskState }) {
           <>
             <button
               onClick={(e) => {
+                updatePos({ target: { value: indexes.iList } });
                 setMoving(true);
                 e.stopPropagation();
               }}
@@ -101,13 +114,19 @@ export function TaskActions({ task, updateTaskState }) {
                 options={lists}
                 name="selectLists"
                 className="w-full"
-                onChange={(e) => setListSelected(lists[e.target.value])}
+                actual={indexes.iList}
+                defaultValue={indexes.iList}
+                actualText={TEXT.form?.selects.current}
+                onChange={updatePos}
               />
               <FormSelect
                 label={TEXT?.task.actions.selects.pos}
                 options={positions}
                 name="selectPos"
                 className="w-full"
+                defaultValue={indexes.iTask}
+                actual={indexes.iTask}
+                actualText={TEXT.form?.selects.current}
               />
             </div>
 
@@ -120,7 +139,10 @@ export function TaskActions({ task, updateTaskState }) {
               </button>
               <button
                 type="button"
-                onClick={() => setMoving(false)}
+                onClick={() => {
+                  // updatePos({ target: { value: "0" } });
+                  setMoving(false);
+                }}
                 className="p-2 px-3 btn-slate rounded-md"
               >
                 {TEXT?.task.actions.cancel}

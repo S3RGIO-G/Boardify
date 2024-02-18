@@ -18,6 +18,9 @@
         "placeholder": "Usuario123"
       }
     },
+    "selects":{
+      "current":"(actual)"
+    },
     "submit": {
       "login": "Iniciar sesión",
       "register": {
@@ -73,7 +76,8 @@
       "cancel": "Cancelar",
       "selects": {
         "list": "Lista",
-        "pos": "Posición"
+        "pos": "Posición",
+        "current": "(actual)"
       }
     },
     "activity": {
@@ -140,5 +144,13 @@
       "pattern": "Usuario inválido"
     },
     "default": "Algo salió mal"
+  },
+  "titles": {
+    "home":"Inicio",
+    "login": "Iniciar sesión",
+    "register": "Registrar",
+    "board": "Tablero",
+    "card": "Tarjeta",
+    "myBoards": "Mis tableros"
   }
 }

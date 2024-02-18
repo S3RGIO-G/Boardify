@@ -7,25 +7,19 @@ import { Outlet, useParams } from "react-router-dom";
 import { SubHeader } from "../components/SubHeader";
 import { useBoards } from "../hooks/useBoards";
 import { useOwner } from "../hooks/useOwner";
-import { useEffect } from "react";
 import { ModalContextProvider } from "../context/ConfirmContext";
 import { FullModalConfirm } from "../components/FullModalConfirm";
 import { Spinner } from "../components/Spinner";
 import { useLanguage } from "../hooks/useLanguage";
+import { Helmet } from "react-helmet";
 
 export function Board() {
-  const { idBoard } = useParams();
+  const { idBoard, idTask } = useParams();
   const { lists, switchLists } = useLists({ idBoard });
   const { board, updateBoard, deleteBoard } = useBoards({ idBoard });
   const { isOwner } = useOwner({ load: true, board });
   const { switchTasks } = useTasks();
-  const {
-    texts: { board: TEXT },
-  } = useLanguage();
-
-  useEffect(() => {
-    document.title = "Board";
-  }, []);
+  const { texts: TEXT } = useLanguage();
 
   const onDragEnd = (event) => {
     const { source: from, destination: to, type } = event;
@@ -38,60 +32,66 @@ export function Board() {
   };
 
   return (
-    <ModalContextProvider>
-      <SubHeader
-        board={board}
-        updateBoard={updateBoard}
-        deleteBoard={deleteBoard}
+    <>
+      <Helmet
+        title={idBoard && idTask ? TEXT.titles?.card : TEXT.titles?.board}
       />
 
-      {board ? (
-        <main className="overflow-hidden pt-3 pb-2 w-full h-full bg-white/5 relative">
-          {lists.length || isOwner ? (
-            <DragDropContext onDragEnd={onDragEnd}>
-              <Droppable
-                isDropDisabled={!isOwner}
-                droppableId="lists"
-                type="list"
-                direction="horizontal"
-              >
-                {(provided) => (
-                  <ol
-                    ref={provided.innerRef}
-                    className="w-full h-full flex overflow-y-hidden overflow-x-auto px-1.5 pb-3"
-                    style={{
-                      scrollbarColor: "#fff6 #00000026",
-                    }}
-                    {...provided.droppableProps}
-                  >
-                    {lists.map((list, i) => (
-                      <List
-                        lists={lists}
-                        list={list}
-                        key={list.id}
-                        index={i}
-                        disable={isOwner}
-                      />
-                    ))}
-                    {provided.placeholder}
+      <ModalContextProvider>
+        <SubHeader
+          board={board}
+          updateBoard={updateBoard}
+          deleteBoard={deleteBoard}
+        />
 
-                    {isOwner && <AddList />}
-                  </ol>
-                )}
-              </Droppable>
-            </DragDropContext>
-          ) : (
-            <div className="text-3xl sm:text-4xl text-center font-medium text-slate-100 m-auto mt-20">
-              <span className="fa-regular fa-folder-open text-7xl mb-2"></span>
-              <p>{TEXT?.noLists}</p>
-            </div>
-          )}
-        </main>
-      ) : (
-        <Spinner className="w-28 h-28 mx-auto mt-20 fill-purple-400 animate-spin" />
-      )}
-      <Outlet />
-      <FullModalConfirm />
-    </ModalContextProvider>
+        {board ? (
+          <main className="overflow-hidden pt-3 pb-2 w-full h-full bg-white/5 relative">
+            {lists.length || isOwner ? (
+              <DragDropContext onDragEnd={onDragEnd}>
+                <Droppable
+                  isDropDisabled={!isOwner}
+                  droppableId="lists"
+                  type="list"
+                  direction="horizontal"
+                >
+                  {(provided) => (
+                    <ol
+                      ref={provided.innerRef}
+                      className="w-full h-full flex overflow-y-hidden overflow-x-auto px-1.5 pb-3"
+                      style={{
+                        scrollbarColor: "#fff6 #00000026",
+                      }}
+                      {...provided.droppableProps}
+                    >
+                      {lists.map((list, i) => (
+                        <List
+                          lists={lists}
+                          list={list}
+                          key={list.id}
+                          index={i}
+                          disable={isOwner}
+                        />
+                      ))}
+                      {provided.placeholder}
+
+                      {isOwner && <AddList />}
+                    </ol>
+                  )}
+                </Droppable>
+              </DragDropContext>
+            ) : (
+              <div className="text-3xl sm:text-4xl text-center font-medium text-slate-100 m-auto mt-20">
+                <span className="fa-regular fa-folder-open text-7xl mb-2"></span>
+                <p>{TEXT.board?.noLists}</p>
+              </div>
+            )}
+          </main>
+        ) : (
+          <Spinner className="w-28 h-28 mx-auto mt-20 fill-purple-400 animate-spin" />
+        )}
+        <Outlet />
+        <FullModalConfirm />
+      </ModalContextProvider>
+    </>
   );
 }

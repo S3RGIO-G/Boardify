@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useLanguage } from "../hooks/useLanguage";
 import { FormInput } from "../components/FormInput";
@@ -12,6 +12,7 @@ import {
 import { getUsersByField } from "../services/users.service";
 import { Spinner } from "../components/Spinner";
 import { useUser } from "../hooks/useUser";
+import { Helmet } from "react-helmet";
 
 export function Register() {
   const { registerUser, loadingUser, setLoadingUser } = useUser();
@@ -73,12 +74,9 @@ export function Register() {
     else clearErrors("confirmPass");
   };
 
-  useEffect(() => {
-    document.title = "Sign up";
-  }, []);
-
   return (
     <>
+      <Helmet title={TEXT.titles?.register} />
       <div className="w-full max-w-[475px] bg-white p-6 rounded-3xl shadow-2xl shadow-black/50">
         <h2 className="text-2xl sm:text-3xl text-center font-bold">
           {TEXT.register?.title}

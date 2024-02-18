@@ -17,11 +17,7 @@ export function Task() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    document.title = "Card";
     loadTask();
-    return () => {
-      document.title = "Board";
-    };
   }, []);
 
   const loadTask = async () => {

@@ -18,6 +18,9 @@
         "placeholder": "User123"
       }
     },
+    "selects":{
+      "current":"(current)"
+    },
     "submit": {
       "login": "Sign in",
       "register": {
@@ -140,5 +143,13 @@
       "pattern": "Invalid user name"
     },
     "default": "Something gone wrong"
+  },
+  "titles": {
+    "home":"Home",
+    "login": "Sign in",
+    "register": "Sign up",
+    "board": "Board",
+    "card": "Card",
+    "myBoards": "My boards"
   }
 }
