@@ -55,7 +55,7 @@ export function TaskItem({ task, index }) {
             {isOwner && (
               <button
                 onClick={onClickBtn}
-                className="invisible group-hover:visible items-center justify-center absolute right-0.5 top-0.5 hover:bg-slate-200 rounded-full h-8 w-8 py-1.5 px-2 z-10"
+                className="invisible hidden sm:block group-hover:visible items-center justify-center absolute right-0.5 top-0.5 hover:bg-slate-200 rounded-full h-8 w-8 py-1.5 px-2 z-10"
               >
                 <i className="fa-solid fa-pencil pointer-events-none"></i>
               </button>
