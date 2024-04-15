@@ -102,11 +102,11 @@ export default function Login() {
 
           <button
             type="submit"
-            className="relative flex items-center justify-center rounded-md py-1 sm:py-2 px-7 text-lg sm:text-xl font-medium btn-primary text-white"
+            className="relative flex items-center justify-center rounded-md py-1 sm:py-2 px-8 text-lg sm:text-xl font-medium btn-primary text-white"
           >
             <Spinner
               show={loadingUser}
-              className="absolute left-1 w-5 h-5 fill-slate-200 animate-spin"
+              className="absolute left-2 w-5 h-5 fill-slate-200 animate-spin"
             />
             {TEXT.form?.submit.login}
           </button>

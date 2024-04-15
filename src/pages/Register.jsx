@@ -158,11 +158,11 @@ export default function Register() {
 
           <button
             type="submit"
-            className="relative flex items-center rounded-md py-1 sm:py-2 px-7 text-lg sm:text-xl btn-primary text-white font-medium"
+            className="relative flex items-center rounded-md py-1 sm:py-2 px-8 text-lg sm:text-xl btn-primary text-white font-medium"
           >
             <Spinner
               show={loadingUser}
-              className="absolute left-1 w-5 h-5 fill-slate-200 animate-spin"
+              className="absolute left-2 w-5 h-5 fill-slate-200 animate-spin"
             />
 
             {!data

@@ -13,11 +13,11 @@ export default function ContainerLists({ lists, isOwner }) {
     return (
       <div className="w-max mx-auto mt-20">
         <img
-          src="/empty-board.png"
+          src="/icons/empty-board.png"
           alt="Empty board icon"
           title="Empty board icon"
           draggable="false"
-          className="mx-auto"
+          className="mx-auto w-40"
         />
         <p className="text-3xl sm:text-4xl text-center font-medium text-slate-100">
           {TEXT.board?.noLists}

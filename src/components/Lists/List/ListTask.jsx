@@ -60,7 +60,7 @@ export default function ListTask({ list, index }) {
 
             {emptyList && !isOwner && (
               <img
-                src="/empty-list.png"
+                src="/icons/empty-list.png"
                 alt="Icon empty list"
                 draggable="false"
                 className="h-10 mx-auto mt-0.5 mb-1.5"
