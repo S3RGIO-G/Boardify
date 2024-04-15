@@ -1,18 +1,22 @@
 import { useContext } from "react";
+
 import { Context } from "../context/GlobalContext";
+
 import { getTasksByField, updateTaskById, addTask, deleteTasksByField, deleteTasksById } from "../services/task.service";
 
 export function useTasks() {
   const { tasks, setTasks } = useContext(Context);
 
-  const loadTaskOfList = async (list) => {
+  const loadTasks = async (ids) => {
     try {
-      const res = await getTasksByField('idList', list.id);
-      updateTaskList(list.id, res);
+      if (!ids.length) return setTasks({});
+      const promises = ids.map(id => getTasksByField("idList", id));
+      const res = await Promise.all(promises);
+      ids.forEach((id, i) => setTasks(prev => ({ ...prev, [id]: res[i] })));
     } catch (err) {
       console.error(err.message);
     }
-  };
+  }
 
   const switchTasks = async ({ fromList, toList, fromIndex, toIndex }) => {
     const prevState = JSON.parse(JSON.stringify(tasks));
@@ -158,5 +162,9 @@ export function useTasks() {
     }
   }
 
-  return { tasks, loadTaskOfList, switchTasks, createTask, updateTask, deleteTask, updateTaskList, clearTaskList }
+  const resetTasks = () => {
+    setTasks(null);
+  }
+
+  return { tasks, loadTasks, switchTasks, createTask, updateTask, deleteTask, updateTaskList, clearTaskList, resetTasks }
 }

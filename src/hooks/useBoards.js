@@ -12,6 +12,11 @@ export function useBoards({ idUser = null, idBoard = null } = {}) {
   useEffect(() => {
     if (idUser) loadBoards();
     if (idBoard) loadBoard();
+
+    return () => {
+      if (idUser) setBoards(null);
+      if (idBoard) setBoard(null);
+    }
   }, [idUser, idBoard]);
 
   const loadBoard = async () => {

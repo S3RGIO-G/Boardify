@@ -1,0 +1,157 @@
+{
+  "form": {
+    "inputs": {
+      "email": {
+        "label": "Email",
+        "placeholder": "example@gmail.com"
+      },
+      "password": {
+        "label": "Password",
+        "placeholder": "Test1234"
+      },
+      "confirmPass": {
+        "label": "Confirm password",
+        "placeholder": "Test1234"
+      },
+      "userName": {
+        "label": "User Name",
+        "placeholder": "User123"
+      }
+    },
+    "selects":{
+      "current":"(current)"
+    },
+    "submit": {
+      "login": "Sign in",
+      "register": {
+        "next": "Next",
+        "create": "Create account"
+      }
+    }
+  },
+  "login": {
+    "title": "Hello!",
+    "subtitle": "Sign in to your account",
+    "no_account": "Do not have account?",
+    "register_here": "Sign up",
+    "try_it": "Would you like to try it?",
+    "click_here": "Click here"
+  },
+  "register": {
+    "title": "Hello, are you new?",
+    "subtitle": "Create an account",
+    "have_account": "Already have an account?",
+    "login_here": "Sign in"
+  },
+  "board": {
+    "logout": "Sign out",
+    "addBoard": {
+      "text": "Add board",
+      "placeholder": "Title"
+    },
+    "addTask": {
+      "text": "Add card",
+      "placeholder": "Enter a title for this card..."
+    },
+    "addList": {
+      "text": "Add another list",
+      "placeholder": "Enter the title of the list..."
+    },
+    "options": {
+      "text": "Options",
+      "edit": "Edit",
+      "move": "Move",
+      "clear": "Clear list",
+      "delete": "Delete list"
+    },
+    "favorites": "FAVORITES",
+    "noFavs": "There are no favorites yet...",
+    "noLists": "Empty board...",
+    "noTasks": "Empty list...",
+    "myBoards": "MY BOARDS"
+  },
+  "task": {
+    "actions": {
+      "title": "Actions",
+      "delete": "Delete",
+      "move": "Move",
+      "cancel": "Cancel",
+      "selects": {
+        "list": "List",
+        "pos": "Position"
+      }
+    },
+    "activity": {
+      "title": "Activity",
+      "show": "Show details",
+      "hide": "Hide details",
+      "new": "has added this card to ",
+      "move": "has moved this card to ",
+      "hidden": "You have hidden the activities..."
+    },
+    "description": {
+      "title": "Description",
+      "edit": "Edit",
+      "save": "Save",
+      "noDescOwner": "Add a more detailed description...",
+      "noDescNoOwner": "There is no description yet..."
+    },
+    "inList": "on the list "
+  },
+  "home": {
+    "description": "Boardify is a simple and effective project and task management app. Create boards and organize your tasks with ease using the Drag & Drop system.",
+    "start": "Get started",
+    "signIn": "Sign In"
+  },
+  "notFound": {
+    "title": "Page not found!",
+    "back": "Back to home"
+  },
+  "modals": {
+    "deleteBoard": "Delete board?",
+    "deleteList": "Delete list?",
+    "clearList": "Clear list?",
+    "deleteCard": "Delete card?",
+    "btns": {
+      "accept": "ACCEPT",
+      "cancel": "CANCEL"
+    }
+  },
+  "errors": {
+    "login": {
+      "email_not_registered": "The email is not registered",
+      "invalid_password": "The password is not correct",
+      "default": "The email or password entered is not correct"
+    },
+    "email": {
+      "required": "Email is empty",
+      "pattern": "Invalid email",
+      "in_use": "Email is already in use"
+    },
+    "password": {
+      "required": "Password is empty",
+      "minLength": "Minimum 8 characters",
+      "pattern": "Minimum 1 uppercase, lowercase and number",
+      "invalid": "Invalid password"
+    },
+    "confirmPass": {
+      "distinct": "It must be the same as the password"
+    },
+    "userName": {
+      "required": "User name is empty",
+      "minLength": "Minimun 4 characters",
+      "in_use": "User name is already in use",
+      "maxLength": "Maximum 20 caracters",
+      "pattern": "Invalid user name"
+    },
+    "default": "Something gone wrong"
+  },
+  "titles": {
+    "home":"Home",
+    "login": "Sign in",
+    "register": "Sign up",
+    "board": "Board",
+    "card": "Card",
+    "myBoards": "My boards"
+  }
+}

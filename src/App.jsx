@@ -1,15 +1,18 @@
 import { Route, Navigate } from "react-router-dom";
-import { Home } from "./pages/Home";
-import { Login } from "./pages/Login";
-import { LoginGuard } from "./guards/LoginGuard";
-import { Register } from "./pages/Register";
-import { ContainerLogin } from "./components/ContainerLogin";
-import { Board } from "./pages/Board";
-import { MyBoards } from "./pages/MyBoards";
-import { Task } from "./pages/Task";
-import { ContainerNoLogin } from "./components/ContainerNoLogin";
 import { checkUser } from "./services/users.service";
-import NotFound from "./components/NotFound";
+
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import Board from "./pages/Board";
+import MyBoards from "./pages/MyBoards";
+import Task from "./pages/Task";
+import NotFound from "./pages/NotFound";
+
+import LoginGuard from "./guards/LoginGuard";
+
+import ContainerLogin from "./components/Containers/ContainerLogin";
+import ContainerNoLogin from "./components/Containers/ContainerNoLogin";
 
 export default function App() {
   return (

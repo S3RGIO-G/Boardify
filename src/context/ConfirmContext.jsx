@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 export const ModalContext = React.createContext();
 
-export function ModalContextProvider({ children }) {
+export default function ModalContextProvider({ children }) {
   const [modalConfirm, setModalConfirm] = useState({});
 
   const obj = { modalConfirm, setModalConfirm };

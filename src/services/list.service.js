@@ -4,7 +4,6 @@ import { BASE_URL_API } from '../../config';
 export async function getListsByField(field, value) {
   try {
     const res = await axios.get(`${BASE_URL_API}/lists?${field}=${value}`);
-    // console.log(res.data);
     return res.data;
   }
   catch (err) {
@@ -25,7 +24,6 @@ export async function addList(list) {
 export async function updateListById(id, data) {
   try {
     const res = await axios.put(`${BASE_URL_API}/lists/${id}`, data, { withCredentials: true });
-    // console.log(res.data);
     return res.data;
   }
   catch (err) {

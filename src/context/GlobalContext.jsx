@@ -1,23 +1,22 @@
 import React, { useEffect, useState } from "react";
+import EN from "../assets/languages/en.json";
+import ES from "../assets/languages/es.json";
 
 export const Context = React.createContext();
 
-export function GlobalContextProvider({ children }) {
+export default function GlobalContextProvider({ children }) {
   const [user, setUser] = useState(null);
-  const [language, setLanguage] = useState({});
-  const [loadingUser, setLoadingUser] = useState(true);
-  const [tasks, setTasks] = useState({});
-  const [lists, setLists] = useState([]);
-
-  const loadLanguage = async () => {
-    const language = JSON.parse(localStorage.getItem("language"));
-    const data = await fetch(`/languages/${language || "en"}.json`);
-    const texts = await data.json();
-    setLanguage(texts);
-  };
+  const [language, setLanguage] = useState(EN);
+  const [loadingUser, setLoadingUser] = useState(false);
+  const [tasks, setTasks] = useState(null);
+  const [lists, setLists] = useState(null);
 
   useEffect(() => {
-    loadLanguage();
+    const lang = localStorage.getItem("lang");
+
+    if (!lang) localStorage.setItem("lang", "en");
+    if (lang === "en" || !lang) setLanguage(EN);
+    else setLanguage(ES);
   }, []);
 
   const obj = {

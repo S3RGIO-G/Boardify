@@ -1,43 +1,138 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: system-ui;
-}
-
-input::-ms-reveal{
-  display: none;
-}
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+* {
+  font-family: system-ui;
+  --color-white: #fff;
+  --color-white-contrast: #f7f6f6;
+
+  --color-light: #f1f5f9;
+  --color-light-hover: #e6eaee;
+
+  --color-medium: #e4e8ec;
+  --color-medium-hover: #dde1e5;
+
+  --color-primary: #862cda;
+  --color-primary-hover: #7515cf;
+
+  --color-secondary: #8030cb;
+
+  --color-tertiary: #2d0057;
+
+  --gradient-primary: #8736d3;
+  --gradient-secondary: #5e00c2;
+  --gradient-tertiary: #210041;
+}
+
+input::-ms-reveal {
+  display: none;
+}
+
 .color-primary {
-  color: #955acd;
+  color: var(--color-primary);
 }
 
 .bg-primary {
-  background-color: #955acd;
+  background-color: var(--color-primary);
 }
 
 .outline-primary {
-  outline-color: #955acd;
+  outline-width: 2px;
+
+  &:focus-visible, &:hover {
+    outline-style: solid;
+    outline-color: var(--color-primary);
+  }
+}
+
+.outline-medium {
+  outline-width: 2px;
+  outline-style: solid;
+  outline-color: var(--color-light-hover);
 }
 
 .btn-primary {
-  background-color: #8635d2;
-  outline-color: #f1f4f7;
+  background-color: var(--color-primary);
+
+  &:hover {
+    background-color: var(--color-primary-hover);
+    border-color: var(--color-light-hover);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-secondary);
+  }
 }
 
-.btn-primary:hover {
-  background-color: #732db3;
+.btn-white {
+  background-color: var(--color-white);
+
+  &:hover {
+    background-color: var(--color-white-contrast);
+    border-color: var(--color-white-contrast);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-medium-hover);
+  }
 }
 
-.btn-slate {
-  background-color: #e2e8f0;
+.btn-medium {
+  background-color: var(--color-medium);
+
+  &:hover {
+    background-color: var(--color-medium-hover);
+    border-color: var(--color-light);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-medium-hover);
+  }
 }
 
-.btn-slate:hover {
-  background-color: #cbd5e1;
+.btn-light {
+  background-color: var(--color-light);
+
+  &:hover {
+    background-color: var(--color-light-hover);
+    border-color: var(--color-light);
+  }
+}
+
+.bg-gradient {
+  background: linear-gradient(15deg, #000 15%, transparent 60%), linear-gradient(135deg, var(--gradient-tertiary), var(--gradient-secondary) 5%, var(--gradient-primary) 15%, var(--gradient-secondary) 25%, var(--gradient-tertiary) 30%, var(--gradient-secondary) 40%, var(--gradient-primary) 50%, var(--gradient-secondary) 60%, var(--gradient-tertiary) 70%, var(--gradient-secondary) 75%, var(--gradient-primary) 85%, var(--gradient-secondary) 95%, var(--gradient-tertiary));
+}
+
+.btn-success {
+  border: 2px solid #3b953b;
+  background-color: #4cc14c;
+
+  &:hover {
+    background-color: #37bf37;
+  }
+}
+
+.btn-danger {
+  border: 2px solid #ac3030;
+  background-color: #ef4444;
+
+  &:hover {
+    background-color: #ec3434;
+  }
+
+}
+
+.modalConfirm {
+  animation: popUp 0.2s 0s forwards;
+}
+
+@keyframes popUp {
+  0% {
+    transform: scale(0.2);
+  }
+
+  100% {
+    transform: scale(1);
+  }
 }

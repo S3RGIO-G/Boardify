@@ -1,0 +1,158 @@
+{
+  "form": {
+    "inputs": {
+      "email": {
+        "label": "Correo Electrónico",
+        "placeholder": "ejemplo@gmail.com"
+      },
+      "password": {
+        "label": "Contraseña",
+        "placeholder": "Prueba1234"
+      },
+      "confirmPass": {
+        "label": "Confirmar contraseña",
+        "placeholder": "Prueba1234"
+      },
+      "userName": {
+        "label": "Usuario",
+        "placeholder": "Usuario123"
+      }
+    },
+    "selects":{
+      "current":"(actual)"
+    },
+    "submit": {
+      "login": "Iniciar sesión",
+      "register": {
+        "next": "Siguiente",
+        "create": "Crear cuenta"
+      }
+    }
+  },
+  "login": {
+    "title": "¡Hola!",
+    "subtitle": "Accede a tu cuenta",
+    "no_account": "¿No tienes cuenta?",
+    "register_here": "Registrate",
+    "try_it": "¿Te gustaría probarlo?",
+    "click_here": "Click aquí"
+  },
+  "register": {
+    "title": "Hola, ¿eres nuevo?",
+    "subtitle": "Crea una cuenta",
+    "have_account": "¿Ya tiene una cuenta?",
+    "login_here": "Iniciar sesión"
+  },
+  "board": {
+    "logout": "Cerrar sesión",
+    "addBoard": {
+      "text": "Añadir tablero",
+      "placeholder": "Título"
+    },
+    "addTask": {
+      "text": "Añadir tarjeta",
+      "placeholder": "Introduzca un título para esta tarjeta..."
+    },
+    "addList": {
+      "text": "Agregar otra lista",
+      "placeholder": "Introduzca el título de la lista..."
+    },
+    "options": {
+      "text": "Opciones",
+      "edit": "Editar",
+      "move": "Mover",
+      "clear": "Vaciar lista",
+      "delete": "Eliminar lista"
+    },
+    "favorites": "FAVORITOS",
+    "noFavs": "No hay favoritos aún...",
+    "noLists": "Tablero vacío",
+    "noTasks": "Lista vacía...",
+    "myBoards": "MIS TABLEROS"
+  },
+  "task": {
+    "actions": {
+      "title": "Acciones",
+      "delete": "Borrar",
+      "move": "Mover",
+      "cancel": "Cancelar",
+      "selects": {
+        "list": "Lista",
+        "pos": "Posición",
+        "current": "(actual)"
+      }
+    },
+    "activity": {
+      "title": "Actividad",
+      "show": "Mostrar detalles",
+      "hide": "Ocultar detalles",
+      "new": "ha agregado esta tarjeta a ",
+      "move": "ha movido esta tarjeta de ",
+      "hidden": "Has ocultado las actividades..."
+    },
+    "description": {
+      "title": "Descripción",
+      "edit": "Editar",
+      "save": "Guardar",
+      "noDescOwner": "Añadir una descripción más detallada...",
+      "noDescNoOwner": "Aún no hay descripción..."
+    },
+    "inList": "en la lista "
+  },
+  "home": {
+    "description": "Boardify es una aplicación de gestión de proyectos y tareas sencilla y efectiva. Crea tableros y organiza tus tareas con facilidad usando el sistema Drag & Drop.",
+    "start": "Comenzar",
+    "signIn": "Iniciar sesión"
+  },
+  "notFound": {
+    "title": "¡Pagina no encontrada!",
+    "back": "Volver al inicio"
+  },
+  "modals": {
+    "deleteBoard": "¿Borrar tablero?",
+    "deleteList": "¿Borrar lista?",
+    "clearList": "¿Vaciar lista?",
+    "deleteCard": "¿Borrar tarjeta?",
+    "btns": {
+      "accept": "ACEPTAR",
+      "cancel": "CANCELAR"
+    }
+  },
+  "errors": {
+    "login": {
+      "email_not_registered": "El correo no está registrado",
+      "invalid_password": "La contraseña no es correcta",
+      "default": "El correo o constraseña ingresados no son correctos"
+    },
+    "email": {
+      "required": "Correo está vacío",
+      "pattern": "Correo inválido",
+      "in_use": "El correo ya está en uso"
+    },
+    "password": {
+      "required": "Contraseña esta vacía",
+      "minLength": "Mínimo 8 caracteres",
+      "pattern": "Mínimo 1 minúscula, mayúscula y número",
+      "invalid": "Contraseña inválida"
+    },
+    "confirmPass": {
+      "distinct": "Debe ser igual que la contraseña"
+    },
+    "userName": {
+      "required": "Usuario esta vacío",
+      "minLength": "Mínimo 4 caracteres",
+      "in_use": "El usuario ya está en uso",
+      "maxLength": "Máximo 20 caracteres",
+      "pattern": "Usuario inválido"
+    },
+    "default": "Algo salió mal"
+  },
+  "titles": {
+    "home":"Inicio",
+    "login": "Iniciar sesión",
+    "register": "Registrar",
+    "board": "Tablero",
+    "card": "Tarjeta",
+    "myBoards": "Mis tableros"
+  }
+}

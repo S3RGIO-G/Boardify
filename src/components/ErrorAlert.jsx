@@ -1,4 +1,4 @@
-export function ErrorAlert({ errorMessage, onClick, className }) {
+export default function ErrorAlert({ errorMessage, onClick, className }) {
   return (
     <div className={`flex justify-center mb-2`}>
       <div

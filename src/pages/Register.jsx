@@ -1,21 +1,22 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { useLanguage } from "../hooks/useLanguage";
-import { FormInput } from "../components/FormInput";
+import { Helmet } from "react-helmet";
 import { useForm } from "react-hook-form";
+import { Link, useNavigate } from "react-router-dom";
+
 import {
   ConfirmPassValidators,
   EmailValidators,
   PasswordValidators,
   UserNameValidators,
 } from "../validators/FormValidators";
-import { getUsersByField } from "../services/users.service";
-import { Spinner } from "../components/Spinner";
 import { useUser } from "../hooks/useUser";
-import { Helmet } from "react-helmet";
+import { useLanguage } from "../hooks/useLanguage";
 
-export function Register() {
-  const { registerUser, loadingUser, setLoadingUser } = useUser();
+import Spinner from "../components/Spinner";
+import Input from "../components/Forms/Form/Elements/Input";
+
+export default function Register() {
+  const { registerUser, loadingUser, checkAvailabilityByField } = useUser();
   const navigate = useNavigate();
   const [data, setData] = useState();
   const { texts: TEXT } = useLanguage();
@@ -31,9 +32,12 @@ export function Register() {
   } = useForm();
 
   const handlerNext = async ({ email, password }) => {
-    const res = await getUsersByField("email", email.toLowerCase());
+    const isAvailable = await checkAvailabilityByField(
+      "email",
+      email.toLowerCase()
+    );
 
-    if (res.length) {
+    if (!isAvailable) {
       setError("email", { message: "in_use" });
       setFocus("email");
     } else {
@@ -44,9 +48,9 @@ export function Register() {
   };
 
   const handlerCreate = async ({ userName }) => {
-    const res = await getUsersByField("username", userName);
+    const isAvailable = await checkAvailabilityByField("username", userName);
 
-    if (res.length) {
+    if (!isAvailable) {
       setError("userName", { message: "in_use" });
       setFocus("userName");
     } else {
@@ -57,14 +61,10 @@ export function Register() {
 
   const onSubmit = async (e) => {
     if (loadingUser) return;
-    setLoadingUser(true);
-    setTimeout(async () => {
-      const { email, password, userName } = e;
+    const { email, password, userName } = e;
 
-      if (!data) await handlerNext({ email, password });
-      else await handlerCreate({ userName });
-      setLoadingUser(false);
-    }, 1000);
+    if (!data) await handlerNext({ email, password });
+    else await handlerCreate({ userName });
   };
 
   const onChangePassword = ({ target: { value } }) => {
@@ -77,10 +77,12 @@ export function Register() {
   return (
     <>
       <Helmet title={TEXT.titles?.register} />
-      <div className="w-full max-w-[475px] bg-white p-6 rounded-3xl shadow-2xl shadow-black/50">
+
+      <div className="w-full max-w-[350px] sm:max-w-[425px] bg-white p-6 rounded-3xl shadow-2xl shadow-black/50 mt-20 mb-10">
         <h2 className="text-2xl sm:text-3xl text-center font-bold">
           {TEXT.register?.title}
         </h2>
+
         <p className="sm:text-lg font-medium text-gray-500 text-center mb-3 sm:mb-4">
           {TEXT.register?.subtitle}
         </p>
@@ -93,7 +95,7 @@ export function Register() {
             {!data ? (
               <>
                 {/* EMAIL */}
-                <FormInput
+                <Input
                   id="email"
                   type="text"
                   label={TEXT.form?.inputs.email.label}
@@ -105,7 +107,7 @@ export function Register() {
                 />
 
                 {/* PASSWORD */}
-                <FormInput
+                <Input
                   id="password"
                   type="password"
                   label={TEXT.form?.inputs.password.label}
@@ -122,7 +124,7 @@ export function Register() {
                 />
 
                 {/* CONFIRMPASSWORD */}
-                <FormInput
+                <Input
                   id="confirmPass"
                   type="password"
                   label={TEXT.form?.inputs.confirmPass.label}
@@ -139,7 +141,7 @@ export function Register() {
               </>
             ) : (
               // USERNAME
-              <FormInput
+              <Input
                 id="userName"
                 type="text"
                 label={TEXT.form?.inputs.userName.label}
@@ -155,12 +157,13 @@ export function Register() {
           </div>
 
           <button
-            className="relative flex items-center justify-center gap-3 w-fit rounded-md py-2 px-9 text-lg sm:text-xl btn-primary text-white font-medium"
             type="submit"
+            className="relative flex items-center rounded-md py-1 sm:py-2 px-7 text-lg sm:text-xl btn-primary text-white font-medium"
           >
-            {loadingUser && (
-              <Spinner className="absolute left-2 w-5 h-5 fill-slate-200 animate-spin" />
-            )}
+            <Spinner
+              show={loadingUser}
+              className="absolute left-1 w-5 h-5 fill-slate-200 animate-spin"
+            />
 
             {!data
               ? TEXT.form?.submit.register.next

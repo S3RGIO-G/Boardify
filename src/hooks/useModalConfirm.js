@@ -1,21 +1,16 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { ModalContext } from "../context/ConfirmContext";
 
-export function useModalConfirm({ initialValue = false } = {}) {
+export function useModalConfirm() {
   const { modalConfirm, setModalConfirm } = useContext(ModalContext);
 
-  useEffect(() => {
-    if (initialValue) setModalAttributes();
-  }, [])
-
-
-  const setModalAttributes = (show = false, title = '', onSuccess = () => { }) => {
-    setModalConfirm({ show, title, onSuccess, onCancel: hideModal })
+  const showConfirm = (title, onSuccess = () => { }) => {
+    setModalConfirm({ show: true, title, onSuccess, onCancel: hideConfirm });
   }
 
-  const hideModal = () => {
+  const hideConfirm = () => {
     setModalConfirm(prev => ({ ...prev, show: false }))
   }
 
-  return { modalConfirm, setModalAttributes, hideModal }
+  return { modalConfirm, showConfirm, hideConfirm }
 }

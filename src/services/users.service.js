@@ -3,11 +3,19 @@ import { BASE_URL_API } from '../../config';
 
 export async function checkUser() {
   try {
-    const user = await verifyAuth();
-    return user;
+    return await verifyAuth();
   } catch (err) {
     console.error(err.message);
     return null;
+  }
+}
+
+export async function verifyAuth() {
+  try {
+    const res = await axios.get(BASE_URL_API + '/auth/validate', { withCredentials: true });
+    return res.data;
+  } catch (err) {
+    throw Error(err.response.data.error);
   }
 }
 
@@ -23,15 +31,6 @@ export async function login({ email, password }) {
 
 export function logout() {
   return axios.post(BASE_URL_API + '/auth/logout', {}, { withCredentials: true });
-}
-
-export async function verifyAuth() {
-  try {
-    const res = await axios.get(BASE_URL_API + '/auth/validate', { withCredentials: true });
-    return res.data;
-  } catch (err) {
-    throw Error(err.response.data.error);
-  }
 }
 
 export async function register({ email, password, userName }) {

@@ -1,20 +1,28 @@
 import { useContext, useEffect } from "react";
-import { Context } from "../context/GlobalContext";
-import { addList, deleteListById, getListsByField, updateListById } from "../services/list.service";
+
 import { useTasks } from "./useTasks";
+
+import { Context } from "../context/GlobalContext";
+
+import { addList, deleteListById, getListsByField, updateListById } from "../services/list.service";
 
 export function useLists({ idBoard = null } = {}) {
   const { lists, setLists } = useContext(Context);
-  const { clearTaskList } = useTasks();
+  const { loadTasks, clearTaskList, updateTaskList, resetTasks } = useTasks();
 
   useEffect(() => {
     if (idBoard) loadLists(idBoard);
+    return () => {
+      if (idBoard) clearLists();
+    }
   }, [idBoard]);
 
   const loadLists = async (idBoard) => {
     try {
       const res = await getListsByField('idBoard', idBoard);
-      setLists(res)
+      const ids = res.map(list => list.id);
+      loadTasks(ids);
+      setLists(res);
     } catch (err) {
       console.error(err.message);
     }
@@ -52,6 +60,7 @@ export function useLists({ idBoard = null } = {}) {
       const { id } = await addList(newList);
       lists.push({ ...newList, id });
       setLists([...lists]);
+      updateTaskList(id, []);
     } catch (err) {
       console.error(err.message);
     }
@@ -89,8 +98,12 @@ export function useLists({ idBoard = null } = {}) {
       setLists(prev);
       console.error(err.message);
     }
-
   }
 
-  return { lists, loadLists, switchLists, createList, updateList, deleteList }
+  const clearLists = () => {
+    setLists(null);
+    resetTasks();
+  }
+
+  return { lists, loadLists, switchLists, createList, updateList, deleteList, clearLists }
 }

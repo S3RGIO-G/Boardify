@@ -1,16 +1,6 @@
 import axios from 'axios';
 import { BASE_URL_API } from '../../config';
 
-export async function addTask(task) {
-  try {
-    const res = await axios.post(`${BASE_URL_API}/tasks`, task, { withCredentials: true });
-    return res.data;
-  }
-  catch (err) {
-    throw Error(err.response.data.error)
-  }
-}
-
 export async function getTasksByField(field, value) {
   try {
     const res = await axios.get(`${BASE_URL_API}/tasks?${field}=${value}`);
@@ -24,6 +14,16 @@ export async function getTasksByField(field, value) {
 export async function getTasksById(id) {
   try {
     const res = await axios.get(`${BASE_URL_API}/tasks/${id}`);
+    return res.data;
+  }
+  catch (err) {
+    throw Error(err.response.data.error)
+  }
+}
+
+export async function addTask(task) {
+  try {
+    const res = await axios.post(`${BASE_URL_API}/tasks`, task, { withCredentials: true });
     return res.data;
   }
   catch (err) {
