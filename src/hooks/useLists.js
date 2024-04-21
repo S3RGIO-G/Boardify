@@ -53,15 +53,23 @@ export function useLists({ idBoard = null } = {}) {
   };
 
   const createList = async ({ name, idUser, idBoard }) => {
+    const prev = [...lists];
     const pos = lists.length ? lists[lists.length - 1].position + 10000 : 10000;
     const newList = { name, idUser, position: pos, idBoard };
 
     try {
+      const tempId = Date.now().toString();
+      const lastIndex = lists.length;
+      setLists(prev => [...prev, { ...newList, id: tempId }]);
       const { id } = await addList(newList);
-      lists.push({ ...newList, id });
-      setLists([...lists]);
+
       updateTaskList(id, []);
+      setLists(prev => {
+        prev[lastIndex].id = id;
+        return prev;
+      })
     } catch (err) {
+      setLists(prev);
       console.error(err.message);
     }
   }
