@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
-import { addBoard, deleteBoardById, getBoardById, getBoardsByField, updateBoardById } from "../services/board.service";
 import { useNavigate } from "react-router-dom";
+
 import { useLists } from "./useLists";
+
+import { addBoard, deleteBoardById, getBoardById, getBoardsByField, updateBoardById } from "../services/board.service";
 
 export function useBoards({ idUser = null, idBoard = null } = {}) {
   const [boards, setBoards] = useState(null);
   const [board, setBoard] = useState(null);
-  const { lists, deleteList } = useLists();
+  const { deleteLists } = useLists();
   const nav = useNavigate();
 
   useEffect(() => {
@@ -85,11 +87,8 @@ export function useBoards({ idUser = null, idBoard = null } = {}) {
   const deleteBoard = async (id) => {
     const prevBoard = { ...board };
     try {
-      const ids = lists.map(l => l.id);
-      const promises = [];
-      ids.forEach(id => promises.push(deleteList(id)));
       setBoard(null)
-      await Promise.all(promises);
+      await deleteLists(board.id);
       await deleteBoardById(id);
       nav("/boards");
     } catch (err) {

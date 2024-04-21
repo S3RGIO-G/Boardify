@@ -151,7 +151,7 @@ export function useTasks() {
     setTasks(prev => ({ ...prev, [idTasksList]: tasksList }));
   }
 
-  const clearTaskList = async (idList) => {
+  const deleteTasks = async (idList) => {
     const prev = [...tasks[idList]];
     try {
       updateTaskList(idList, []);
@@ -166,5 +166,5 @@ export function useTasks() {
     setTasks(null);
   }
 
-  return { tasks, loadTasks, switchTasks, createTask, updateTask, deleteTask, updateTaskList, clearTaskList, resetTasks }
+  return { tasks, loadTasks, switchTasks, createTask, updateTask, deleteTask, updateTaskList, deleteTasks, resetTasks }
 }

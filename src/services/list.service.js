@@ -31,6 +31,15 @@ export async function updateListById(id, data) {
   }
 }
 
+export async function deleteListsByField(field, value) {
+  try {
+    const res = await axios.delete(`${BASE_URL_API}/lists?${field}=${value}`, { withCredentials: true });
+    return res.data;
+  } catch (err) {
+    throw Error(err.response.data.error)
+  }
+}
+
 export async function deleteListById(id) {
   try {
     const res = await axios.delete(`${BASE_URL_API}/lists/${id}`, { withCredentials: true });

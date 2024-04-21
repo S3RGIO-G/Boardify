@@ -14,7 +14,7 @@ export default function ModalOption({ hideOptions, list, onEdit, styles }) {
   const [moving, setMoving] = useState(false);
   const { lists, deleteList, switchLists } = useLists();
   const { texts: TEXT } = useLanguage();
-  const { clearTaskList } = useTasks();
+  const { deleteTasks } = useTasks();
   const { hideConfirm, showConfirm } = useModalConfirm();
 
   const clickOutside = (event) => {
@@ -27,7 +27,7 @@ export default function ModalOption({ hideOptions, list, onEdit, styles }) {
   const onClear = () => {
     try {
       hideConfirm();
-      clearTaskList(list.id);
+      deleteTasks(list.id);
     } catch (err) {
       console.error(err.message);
     }

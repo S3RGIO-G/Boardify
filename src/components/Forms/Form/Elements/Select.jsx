@@ -14,6 +14,7 @@ export default function Select({
   const text = options[selected]?.name || options[selected];
 
   const getString = (value, maxLength = 999) => {
+    if (!value) return "‎";
     const text = value.toString();
     const length = text.length;
     const shortText = text.split("").splice(0, maxLength).join("");
@@ -26,9 +27,7 @@ export default function Select({
   }, [options]);
 
   return (
-    <div
-      className={`py-1.5 px-3 relative btn-medium rounded-md ${className}`}
-    >
+    <div className={`py-1.5 px-3 relative btn-medium rounded-md ${className}`}>
       <label htmlFor={name} className="text-xs font-medium pointer-events-none">
         {label}
       </label>
