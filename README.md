@@ -1,5 +1,5 @@
 # Boardify
-Con Boardify podrás gestionar tus proyectos y tareas de una forma sencilla y efectiva.<br>
+Con Boardify podrás gestionar tus proyectos y tareas de forma sencilla y efectiva.<br>
 La aplicación consume nuestra propia API, puedes visitar su [WEB](https://api-boardify.vercel.app/) o repositorio en [GITHUB](https://github.com/sergiogonzalez01/API-Boardify)
 
 ![image](https://github.com/sergiogonzalez01/Boardify/assets/60524882/6cd0bb31-0be5-4de4-a55a-3b86f4cc7c19)
