@@ -17,7 +17,7 @@ Puedes crear, modificar y ordenar tus listas o tareas como más te guste.
 ![image](https://github.com/sergiogonzalez01/Boardify/assets/60524882/981bf30b-b9d1-409f-afc4-482ec7ee1d61)
 
 ## ¡Tareas detalladas!
-Si deseas agregar más detalles a tus tareas, puedes agregale un comentario.<br>
+Si deseas agregar más detalles a tus tareas, puedes agregarle un comentario.<br>
 Tambien, se listarán todas las actividades de la tarea seleccionada.
 
 ![image](https://github.com/sergiogonzalez01/Boardify/assets/60524882/ac98956b-0b1f-4943-a377-e567ecc4e92e)
